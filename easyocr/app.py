@@ -5,6 +5,44 @@ import io
 import fitz
 import tempfile
 import easyocr
+import json
+from streamlit.components.v1 import html as st_html
+
+def copy_to_clipboard_button(text: str, key: str, label: str = "📋 Copy to Clipboard"):
+    payload = json.dumps(text)
+    st_html(f"""
+        <button id="{key}" style="
+            background-color:#16a34a;
+            color:white;
+            border:none;
+            border-radius:8px;
+            padding:8px 16px;
+            margin:10px 0 4px 0;
+            cursor:pointer;
+            font-size:15px;">
+            {label}
+        </button>
+        <script>
+        const btn = document.getElementById("{key}");
+        btn.addEventListener("click", async () => {{
+            try {{
+                await navigator.clipboard.writeText({payload});
+                btn.innerText = "✅ Copied!";
+                setTimeout(() => btn.innerText = "{label}", 2000);
+            }} catch (e) {{
+                // Fallback for older browsers
+                const ta = document.createElement('textarea');
+                ta.value = {payload};
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                btn.innerText = "✅ Copied!";
+                setTimeout(() => btn.innerText = "{label}", 2000);
+            }}
+        }});
+        </script>
+    """, height=46)
 
 LANG_CHOICES = {
     "en": "English",
@@ -145,33 +183,7 @@ if uploaded and (run_clicked or uploaded.type == "application/pdf"):
 
         st.subheader("Extracted Text")
         st.text_area("Text", final_text, height=400)
-        # ---- Copy to Clipboard Button ----
-        st.markdown(
-            """
-            <button id="copyButton" style="
-                background-color:#16a34a;
-                color:white;
-                border:none;
-                border-radius:8px;
-                padding:8px 16px;
-                margin-top:10px;
-                cursor:pointer;
-                font-size:15px;">
-                📋 Copy to Clipboard
-            </button>
-
-            <script>
-            const copyButton = document.getElementById('copyButton');
-            copyButton.addEventListener('click', async () => {
-                const textArea = document.querySelector('textarea');
-                await navigator.clipboard.writeText(textArea.value);
-                copyButton.innerText = '✅ Copied!';
-                setTimeout(() => (copyButton.innerText = '📋 Copy to Clipboard'), 2000);
-            });
-            </script>
-            """,
-            unsafe_allow_html=True,
-        )
+        copy_to_clipboard_button(final_text, key="copy_pdf")
         st.download_button(
             "💾 Download TXT",
             data=final_text.encode("utf-8"),
@@ -197,33 +209,7 @@ if uploaded and (run_clicked or uploaded.type == "application/pdf"):
 
         st.subheader("Extracted Text")
         st.text_area("Text", text, height=400)
-        # ---- Copy to Clipboard Button ----
-        st.markdown(
-            """
-            <button id="copyButton" style="
-                background-color:#16a34a;
-                color:white;
-                border:none;
-                border-radius:8px;
-                padding:8px 16px;
-                margin-top:10px;
-                cursor:pointer;
-                font-size:15px;">
-                📋 Copy to Clipboard
-            </button>
-
-            <script>
-            const copyButton = document.getElementById('copyButton');
-            copyButton.addEventListener('click', async () => {
-                const textArea = document.querySelector('textarea');
-                await navigator.clipboard.writeText(textArea.value);
-                copyButton.innerText = '✅ Copied!';
-                setTimeout(() => (copyButton.innerText = '📋 Copy to Clipboard'), 2000);
-            });
-            </script>
-            """,
-            unsafe_allow_html=True,
-        )
+        copy_to_clipboard_button(text, key="copy_img")
         st.download_button(
             "💾 Download TXT",
             data=text.encode("utf-8"),
