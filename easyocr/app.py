@@ -144,7 +144,34 @@ if uploaded and (run_clicked or uploaded.type == "application/pdf"):
         final_text = " ".join(final_text.split())
 
         st.subheader("Extracted Text")
-        st.text_area("Text", final_text, height=250)
+        st.text_area("Text", final_text, height=400)
+        # ---- Copy to Clipboard Button ----
+        st.markdown(
+            """
+            <button id="copyButton" style="
+                background-color:#16a34a;
+                color:white;
+                border:none;
+                border-radius:8px;
+                padding:8px 16px;
+                margin-top:10px;
+                cursor:pointer;
+                font-size:15px;">
+                📋 Copy to Clipboard
+            </button>
+
+            <script>
+            const copyButton = document.getElementById('copyButton');
+            copyButton.addEventListener('click', async () => {
+                const textArea = document.querySelector('textarea');
+                await navigator.clipboard.writeText(textArea.value);
+                copyButton.innerText = '✅ Copied!';
+                setTimeout(() => (copyButton.innerText = '📋 Copy to Clipboard'), 2000);
+            });
+            </script>
+            """,
+            unsafe_allow_html=True,
+        )
         st.download_button(
             "💾 Download TXT",
             data=final_text.encode("utf-8"),
@@ -170,6 +197,33 @@ if uploaded and (run_clicked or uploaded.type == "application/pdf"):
 
         st.subheader("Extracted Text")
         st.text_area("Text", text, height=400)
+        # ---- Copy to Clipboard Button ----
+        st.markdown(
+            """
+            <button id="copyButton" style="
+                background-color:#16a34a;
+                color:white;
+                border:none;
+                border-radius:8px;
+                padding:8px 16px;
+                margin-top:10px;
+                cursor:pointer;
+                font-size:15px;">
+                📋 Copy to Clipboard
+            </button>
+
+            <script>
+            const copyButton = document.getElementById('copyButton');
+            copyButton.addEventListener('click', async () => {
+                const textArea = document.querySelector('textarea');
+                await navigator.clipboard.writeText(textArea.value);
+                copyButton.innerText = '✅ Copied!';
+                setTimeout(() => (copyButton.innerText = '📋 Copy to Clipboard'), 2000);
+            });
+            </script>
+            """,
+            unsafe_allow_html=True,
+        )
         st.download_button(
             "💾 Download TXT",
             data=text.encode("utf-8"),
