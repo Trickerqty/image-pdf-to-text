@@ -8,18 +8,19 @@ import easyocr
 import json
 from streamlit.components.v1 import html as st_html
 
-def copy_to_clipboard_button(text: str, key: str, label: str = "📋 Copy to Clipboard"):
+def copy_to_clipboard_button(text: str, key: str, label: str = "Copy to Clipboard"):
     payload = json.dumps(text)
     st_html(f"""
         <button id="{key}" style="
-            background-color:#16a34a;
+            background-color:#232429;
             color:white;
             border:none;
-            border-radius:8px;
-            padding:8px 16px;
-            margin:10px 0 4px 0;
+            border-radius:20px;
+            padding:8px 20px;
+            margin:10px 6px 10 10;
             cursor:pointer;
-            font-size:15px;">
+            font-size:15px;
+            display:inline-block;">
             {label}
         </button>
         <script>
