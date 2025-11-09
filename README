@@ -1,11 +1,11 @@
-# 📝 EasyOCR Image/PDF → Text (Streamlit App)
+# EasyOCR Image/PDF → Text (Streamlit App)
 
 This project is a **Streamlit web app** that uses [EasyOCR](https://github.com/JaidedAI/EasyOCR) to extract text from **images** and **PDF documents**.  
 It supports multiple languages (e.g., English 🇬🇧, Filipino 🇵🇭, Spanish 🇪🇸, etc.) and cleans the extracted text into a straight, continuous paragraph for easier reading or copying.
 
 ---
 
-## 🚀 Features
+## Features
 
 ✅ Upload **images or PDFs**  
 ✅ Supports 30+ languages (English, Tagalog, Spanish, etc.)  
@@ -15,7 +15,7 @@ It supports multiple languages (e.g., English 🇬🇧, Filipino 🇵🇭, Spani
 
 ---
 
-## 🧠 Tech Stack
+## Tech Stack
 
 | Component | Description |
 |------------|-------------|
@@ -28,16 +28,16 @@ It supports multiple languages (e.g., English 🇬🇧, Filipino 🇵🇭, Spani
 
 ---
 
-## 🧩 Setup & Installation
+## Setup & Installation
 
-### 1️⃣ Clone this repository
+### Clone this repository
 ```bash
 git clone https://github.com/<your-username>/easyocr-streamlit-app.git
 ```
 ```bash
 cd easyocr-streamlit-app
 ```
-### 2️⃣ Create and activate a virtual environment
+### Create and activate a virtual environment
 ```bash
 python -m venv venv
 ```
@@ -50,12 +50,12 @@ venv\Scripts\activate
 ```bash
 source venv/bin/activate
 ```
-### 3️⃣ Install dependencies
+### Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4️⃣ Run the app
+### Run the app
 ```bash
 streamlit run app.py
 ```
