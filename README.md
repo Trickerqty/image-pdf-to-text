@@ -32,7 +32,7 @@ It supports multiple languages (e.g., English 🇬🇧, Filipino 🇵🇭, Spani
 
 ### Clone this repository
 ```bash
-git clone https://github.com/<your-username>/easyocr-streamlit-app.git
+git clone https://github.com/Trickerqty/image-pdf-to-text.git
 ```
 ```bash
 cd easyocr-streamlit-app
