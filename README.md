@@ -35,7 +35,7 @@ It supports multiple languages (e.g., English 🇬🇧, Filipino 🇵🇭, Spani
 git clone https://github.com/Trickerqty/image-pdf-to-text.git
 ```
 ```bash
-cd easyocr-streamlit-app
+cd easyocr
 ```
 ### Create and activate a virtual environment
 ```bash
